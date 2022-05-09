@@ -9,10 +9,10 @@
   <script src="./index.js"></script>
   <script type="text/javascript">
      async function getMartianAleIndex() {
-       let oracleAddress = document.querySelector('#oracle\\:address')
-       oracleAddress = oracleAddress ? oracleAddress.value : undefined
-       doOracleRequest({
-         "address": oracleAddress,
+       let apiAddress = document.querySelector('#api\\:address')
+       apiAddress = apiAddress ? apiAddress.value : undefined
+       doApiRequest({
+         "address": apiAddress,
          "service": "stub1",
          "keypath": "martianale",
          "abi": "json",
@@ -23,56 +23,56 @@
        })
      }
 
-    async function runOracle() {
-      let oracleAddress = document.querySelector('#oracle\\:address')
-      let oracleService = document.querySelector('#oracle\\:service')
-      let oracleKeypath = document.querySelector('#oracle\\:keypath')
-      let oracleAbi = document.querySelector('#oracle\\:abi')
-      let oracleMultiplier = document.querySelector('#oracle\\:multiplier')
-      let oracleData = document.querySelector('#oracle\\:data')
-      console.log(oracleAddress)
+    async function runApi() {
+      let apiAddress = document.querySelector('#api\\:address')
+      let apiService = document.querySelector('#api\\:service')
+      let apiKeypath = document.querySelector('#api\\:keypath')
+      let apiAbi = document.querySelector('#api\\:abi')
+      let apiMultiplier = document.querySelector('#api\\:multiplier')
+      let apiData = document.querySelector('#api\\:data')
+      console.log(apiAddress)
 
-      doOracleRequest({
-        "address": oracleAddress ? oracleAddress.value : "",
-        "service": oracleService ? oracleService.value : "",
-        "keypath": oracleKeypath ? oracleKeypath.value : "",
-        "abi": oracleAbi ? oracleAbi.value : "",
-        "multiplier": oracleMultiplier ? oracleMultiplier.value : "",
-        "data": oracleData ? oracleData.value : "",
+      doApiRequest({
+        "address": apiAddress ? apiAddress.value : "",
+        "service": apiService ? apiService.value : "",
+        "keypath": apiKeypath ? apiKeypath.value : "",
+        "abi": apiAbi ? apiAbi.value : "",
+        "multiplier": apiMultiplier ? apiMultiplier.value : "",
+        "data": apiData ? apiData.value : "",
       }, {
-        "output": document.querySelector('#oracle\\:output'),
-        "status": document.querySelector('#oracle\\:status')
+        "output": document.querySelector('#api\\:output'),
+        "status": document.querySelector('#api\\:status')
       })
     }
     async function getEchoValues() {
-      document.querySelector('#oracle\\:service').value = "echo"
-      document.querySelector('#oracle\\:keypath').value = "foo"
-      document.querySelector('#oracle\\:abi').value = "json"
-      document.querySelector('#oracle\\:data').value = '{"foo": 1024}'
-      document.querySelector('#oracle\\:multiplier').value = ''
+      document.querySelector('#api\\:service').value = "echo"
+      document.querySelector('#api\\:keypath').value = "foo"
+      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:data').value = '{"foo": 1024}'
+      document.querySelector('#api\\:multiplier').value = ''
     }
     async function getEchoWeiValues() {
-      document.querySelector('#oracle\\:service').value = "echo"
-      document.querySelector('#oracle\\:keypath').value = "foo"
-      document.querySelector('#oracle\\:abi').value = "uint256"
-      document.querySelector('#oracle\\:data').value = '{"foo": 1024.25}'
-      document.querySelector('#oracle\\:multiplier').value =
+      document.querySelector('#api\\:service').value = "echo"
+      document.querySelector('#api\\:keypath').value = "foo"
+      document.querySelector('#api\\:abi').value = "uint256"
+      document.querySelector('#api\\:data').value = '{"foo": 1024.25}'
+      document.querySelector('#api\\:multiplier').value =
         '1000000000000000000'
     }
     async function getStubValues() {
-      document.querySelector('#oracle\\:service').value = "stub1"
-      document.querySelector('#oracle\\:keypath').value = "martianale"
-      document.querySelector('#oracle\\:abi').value = "json"
-      document.querySelector('#oracle\\:data').value =
+      document.querySelector('#api\\:service').value = "stub1"
+      document.querySelector('#api\\:keypath').value = "martianale"
+      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:data').value =
         '{"range": [0, 100], "indexes": ["martianale"]}'
-      document.querySelector('#oracle\\:multiplier').value = ''
+      document.querySelector('#api\\:multiplier').value = ''
     }
     async function getInflationValues() {
-      document.querySelector('#oracle\\:service').value = "truflation/current"
-      document.querySelector('#oracle\\:keypath').value = ''
-      document.querySelector('#oracle\\:abi').value = "json"
-      document.querySelector('#oracle\\:data').value = ''
-      document.querySelector('#oracle\\:multiplier').value = ''
+      document.querySelector('#api\\:service').value = "truflation/current"
+      document.querySelector('#api\\:keypath').value = ''
+      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:data').value = ''
+      document.querySelector('#api\\:multiplier').value = ''
     }
   </script>
 </head>
@@ -88,8 +88,8 @@
   <button class="enableEthereumButton">Connect wallet</button><br />
   Account: <span class="showAccount"></span><br />
   Chain: <span class="showChain"></span><br><br />
-  Oracle address:
-  <input type="text" size="50" id="oracle:address"
+  API client address:
+  <input type="text" size="50" id="api:address"
 	 value=""
 	 /><br />
   <br />
@@ -118,15 +118,15 @@
     <button type="button" onClick="getInflationValues()">
       Get Inflation Values
     </button><br />
-    Service: <input type="text" size="50" id="oracle:service" /><br />
-    Keypath: <input type="text" size="50" id="oracle:keypath" /><br />
-    Abi: <input type="text" size="50" id="oracle:abi" /><br />
-    Multiplier: <input type="text" size="50" id="oracle:multiplier" /><br />
-    Data:<br> <textarea id="oracle:data"></textarea><br />
-    <button type="button" onClick="runOracle();">Run
-      Oracle</button><br />
-    <span id="oracle:output"></span><br />
-    <span id="oracle:status"></span>
+    Service: <input type="text" size="50" id="api:service" /><br />
+    Keypath: <input type="text" size="50" id="api:keypath" /><br />
+    Abi: <input type="text" size="50" id="api:abi" /><br />
+    Multiplier: <input type="text" size="50" id="api:multiplier" /><br />
+    Data:<br> <textarea id="api:data"></textarea><br />
+    <button type="button" onClick="runApi();">Run
+      Api</button><br />
+    <span id="api:output"></span><br />
+    <span id="api:status"></span>
   </section>
 
   <a href="power-tools.html">Power tools</a> 

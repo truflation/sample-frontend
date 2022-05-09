@@ -12,11 +12,11 @@ window.addEventListener('load', function () {
     showAccount.innerHTML = accounts[0]
     const inflationAddress =
           document.getElementById('inflation:address')
-    const oracleAddress =
-          document.getElementById('oracle:address')
+    const apiAddress =
+          document.getElementById('api:address')
     if (balanceAddress) { balanceAddress.value = accounts[0] }
     if (inflationAddress) { inflationAddress.value = '0x5fc949612bCf622A63C4D66B1aA132728Cc0eb1C' }
-    if (oracleAddress) { oracleAddress.value = '0x8a88122D96468B1c362Af6E6e0AA7c63a62892b7' }
+    if (apiAddress) { apiAddress.value = '0x8a88122D96468B1c362Af6E6e0AA7c63a62892b7' }
     document.querySelector('.showChain').innerHTML =
       window.ethereum.networkVersion
   }
@@ -81,7 +81,7 @@ function decode (data, web3, abi, multiplier) {
   return retval
 }
 
-async function doOracleRequest (request, output) {
+async function doApiRequest (request, output) {
   try {
     console.log(request)
     if (request === undefined) {
@@ -93,13 +93,13 @@ async function doOracleRequest (request, output) {
     }
     output.status.innerHTML = "Running ..."
     const account = getAccount()
-    const oracle = new web3.eth.Contract(
-      oracleAbi, request.address)
-    const linkToken = await oracle.methods.getChainlinkToken().call()
+    const api = new web3.eth.Contract(
+      apiAbi, request.address)
+    const linkToken = await api.methods.getChainlinkToken().call()
     const tokenContract = new web3.eth.Contract(
       erc20Abi, linkToken
     )
-    const requestTxn = oracle.methods.doRequest(
+    const requestTxn = api.methods.doRequest(
       request.service ? request.service : '',
       request.data ? request.data : '',
       request.keypath ? request.keypath : '',
@@ -107,7 +107,7 @@ async function doOracleRequest (request, output) {
       request.multiplier ? request.multiplier : ''
     )
     output.status.innerHTML = 'Transferring LINK...'
-    const fee = await oracle.methods.fee().call()
+    const fee = await api.methods.fee().call()
     const transfer = tokenContract.methods.transfer(
       request.address, fee
     )
@@ -124,14 +124,14 @@ async function doOracleRequest (request, output) {
     console.log(id)
     output.status.innerHTML = 'Waiting for response for request id: ' + id
 
-    oracle.events.ChainlinkFulfilled(
+    api.events.ChainlinkFulfilled(
       {
         filter: { id }
       },
       (error, event) => { console.log('foo', error, event) })
       .on('data', async (event) => {
         const obj = decode(
-          await oracle.methods.results(id).call(),
+          await api.methods.results(id).call(),
           web3, request.abi, request.multiplier
         )
         output.output.innerHTML =
