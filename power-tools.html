@@ -51,6 +51,14 @@
       document.querySelector('#oracle\\:data').value = '{"foo": 1024}'
       document.querySelector('#oracle\\:multiplier').value = ''
     }
+    async function getEchoWeiValues() {
+      document.querySelector('#oracle\\:service').value = "echo"
+      document.querySelector('#oracle\\:keypath').value = "foo"
+      document.querySelector('#oracle\\:abi').value = "uint256"
+      document.querySelector('#oracle\\:data').value = '{"foo": 1024.25}'
+      document.querySelector('#oracle\\:multiplier').value =
+        '1000000000000000000'
+    }
     async function getStubValues() {
       document.querySelector('#oracle\\:service').value = "stub1"
       document.querySelector('#oracle\\:keypath').value = "martianale"
@@ -100,6 +108,9 @@
     <h3>API Tester</h3>
     <button type="button" onClick="getEchoValues()">
       Get Echo Values
+    </button>
+    <button type="button" onClick="getEchoWeiValues()">
+      Get Echo Value in wei
     </button>
     <button type="button" onClick="getStubValues()">
       Get Stub Values

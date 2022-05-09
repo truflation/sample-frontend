@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
     const oracleAddress =
           document.getElementById('oracle:address')
     if (balanceAddress) { balanceAddress.value = accounts[0] }
-    if (inflationAddress) { inflationAddress.value = '0x79053120810FdDf61ceFB781fc898D1cf52A44a0' }
+    if (inflationAddress) { inflationAddress.value = '0x5fc949612bCf622A63C4D66B1aA132728Cc0eb1C' }
     if (oracleAddress) { oracleAddress.value = '0x8a88122D96468B1c362Af6E6e0AA7c63a62892b7' }
     document.querySelector('.showChain').innerHTML =
       window.ethereum.networkVersion
@@ -91,7 +91,7 @@ async function doOracleRequest (request, output) {
     if (!web3.utils.isAddress(request.address)) {
       throw Error('address not valid')
     }
-    output.status.innerHTML = 'Running...'
+    output.status.innerHTML = "Running ..."
     const account = getAccount()
     const oracle = new web3.eth.Contract(
       oracleAbi, request.address)
@@ -115,13 +115,14 @@ async function doOracleRequest (request, output) {
       from: account,
       to: request.address
     })
+    output.status.innerHTML = 'Sending request ...'
     const txn = await requestTxn.send({
       from: account,
       to: request.address
     })
     const id = txn.events.ChainlinkRequested.returnValues.id
     console.log(id)
-    output.status.innerHTML = 'Waiting for response request id: ' + id
+    output.status.innerHTML = 'Waiting for response for request id: ' + id
 
     oracle.events.ChainlinkFulfilled(
       {
