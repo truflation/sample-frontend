@@ -11,6 +11,9 @@ A set of [power
 tools](https://truflation.github.io/sample-frontend/power-tools.html) is
 available which will allowing you to send data via the truflation API.
 
+The sample apps connect to the truflation API through a solidity smart
+contract [ApiClient](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/truflation/sample-frontend/main/ApiClient.sol)
+
 ## Getting help
 
 To get help see the [truflation developer discord](https://discord.com/channels/967280164071407666/968071680360587264)
