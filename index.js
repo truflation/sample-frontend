@@ -15,8 +15,8 @@ window.addEventListener('load', function () {
     const apiAddress =
           document.getElementById('api:address')
     if (balanceAddress) { balanceAddress.value = accounts[0] }
-    if (inflationAddress) { inflationAddress.value = '0x5fc949612bCf622A63C4D66B1aA132728Cc0eb1C' }
-    if (apiAddress) { apiAddress.value = '0x8a88122D96468B1c362Af6E6e0AA7c63a62892b7' }
+    if (inflationAddress) { inflationAddress.value = config.inflationAddress }
+    if (apiAddress) { apiAddress.value = config.apiAddress }
     document.querySelector('.showChain').innerHTML =
       window.ethereum.networkVersion
   }

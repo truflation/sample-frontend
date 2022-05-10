@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <title>Truflation basic test app</title>
   <link rel="shortcut icon" href="./favicon.ico"/>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.3/web3.min.js"></script>
+  <script type="text/javascript"
+	  src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.3/web3.min.js"></script>
+  <script src="./config.js"></script>
   <script src="./abi.js"></script>
   <script src="./index.js"></script>
   <script type="text/javascript">
@@ -100,7 +102,7 @@
   Chain: <span class="showChain"></span><br><br />
   <section id="contract">
     <h3>Inflation data</h3>
-    Contract Address:
+    Contract address:
     <input type="text" size="50" id="inflation:address"
 	   value=""
 	   />
@@ -115,7 +117,7 @@
 
   <section id="contract">
     <h3>Get balances</h3>
-    Oracle Address:
+    Contract address:
     <input type="text" size="50" id="balance:address"
 	   value=""
 	   />
