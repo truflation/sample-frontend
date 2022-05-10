@@ -1,5 +1,5 @@
 These are sample web3 apps from [truflation](http://truflation.com)
-using the [chainlink](http://chain.link)
+using [chainlink](http://chain.link)
 
 ## Running sample apps
 
