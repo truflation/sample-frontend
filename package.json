@@ -4,6 +4,7 @@
     "serve": "static-server . --port 9011"
   },
   "dependencies": {
+    "@chainlink/contracts": "^0.4.1",
     "static-server": "^2.2.1"
   }
 }
