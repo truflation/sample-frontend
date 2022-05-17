@@ -77,6 +77,13 @@
       document.querySelector('#api\\:data').value = ''
       document.querySelector('#api\\:multiplier').value = ''
     }
+    async function getNftValues() {
+      document.querySelector('#api\\:service').value = "nft-index"
+      document.querySelector('#api\\:keypath').value = ''
+      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:data').value = '{"index": "top11"}'
+      document.querySelector('#api\\:multiplier').value = ''
+    }
   </script>
 </head>
 <body>
@@ -123,7 +130,11 @@
     </button>
     <button type="button" onClick="getInflationValues()">
       Get Inflation Values
-    </button><br />
+    </button>
+    <button type="button" onClick="getNftValues()">
+      Get NFT Values
+    </button>
+    <br />
     Service: <input type="text" size="50" id="api:service" /><br />
     Keypath: <input type="text" size="50" id="api:keypath" /><br />
     Abi: <input type="text" size="50" id="api:abi" /><br />
