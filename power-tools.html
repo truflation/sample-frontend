@@ -70,11 +70,25 @@
         '{"range": [0, 100], "indexes": ["martianale"]}'
       document.querySelector('#api\\:multiplier').value = ''
     }
-    async function getInflationValues() {
-      document.querySelector('#api\\:service').value = "truflation/current"
+    async function getInflationCurrentValues() {
+      document.querySelector('#api\\:service').value = 'truflation/current'
       document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:abi').value = 'json'
       document.querySelector('#api\\:data').value = ''
+      document.querySelector('#api\\:multiplier').value = ''
+    }
+    async function getInflationAtDateValues() {
+      document.querySelector('#api\\:service').value = 'truflation/at-date'
+      document.querySelector('#api\\:keypath').value = ''
+      document.querySelector('#api\\:abi').value = 'json'
+      document.querySelector('#api\\:data').value = '{"date": "2021-10-05"}'
+      document.querySelector('#api\\:multiplier').value = ''
+    }
+    async function getInflationRangeValues() {
+      document.querySelector('#api\\:service').value = "truflation/range"
+      document.querySelector('#api\\:keypath').value = ''
+      document.querySelector('#api\\:abi').value = "ipfs"
+      document.querySelector('#api\\:data').value = '{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02"}'
       document.querySelector('#api\\:multiplier').value = ''
     }
     async function getNftValues() {
@@ -119,6 +133,16 @@
 
   <section id="api-tester">
     <h3>API Tester</h3>
+    <button type="button" onClick="getInflationCurrentValues()">
+      Get Current Inflation Values
+    </button>
+    <button type="button" onClick="getInflationAtDateValues()">
+      Get Inflation at date Values
+    </button>
+    <button type="button" onClick="getInflationRangeValues()">
+      Get Inflation range Values
+    </button>
+    <br />
     <button type="button" onClick="getEchoValues()">
       Get Echo Values
     </button>
@@ -127,9 +151,6 @@
     </button>
     <button type="button" onClick="getStubValues()">
       Get Stub Values
-    </button>
-    <button type="button" onClick="getInflationValues()">
-      Get Inflation Values
     </button>
     <button type="button" onClick="getNftValues()">
       Get NFT Values

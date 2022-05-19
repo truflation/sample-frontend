@@ -130,6 +130,18 @@ async function doApiRequest (request, output) {
       },
       (error, event) => { console.log('foo', error, event) })
       .on('data', async (event) => {
+        if (request.abi === 'ipfs' ||
+            request.abi === 'ipfs/cbor' ||
+            request.abi === 'ipfs/json') {
+          const r = await api.methods.results(id).call()
+          const b = hexStringToByteArray(r)
+          const s = new TextDecoder().decode(b)
+
+          output.output.innerHTML =
+            `<a href="http://ipfs.io/ipfs/${s}">${s}</a>`
+          output.status.innerHTML = ''
+          return
+        }
         const obj = decode(
           await api.methods.results(id).call(),
           web3, request.abi, request.multiplier
