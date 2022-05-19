@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Truflation power tools</title>
+  <title>Truflation api tester</title>
   <link rel="shortcut icon" href="./favicon.ico"/>
   <script type="text/javascript"
 	  src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.3/web3.min.js"></script>
@@ -11,21 +11,6 @@
   <script src="./abi.js"></script>
   <script src="./index.js"></script>
   <script type="text/javascript">
-     async function getMartianAleIndex() {
-       let apiAddress = document.querySelector('#api\\:address')
-       apiAddress = apiAddress ? apiAddress.value : undefined
-       doApiRequest({
-         "address": apiAddress,
-         "service": "stub1",
-         "keypath": "martianale",
-         "abi": "json",
-         "data": '{"range": [0, 100], "indexes": ["martianale"]}',
-       }, {
-         "output":  document.querySelector('#martianale\\:output'),
-         "status": document.querySelector('#martianale\\:status')
-       })
-     }
-
     async function runApi() {
       let apiAddress = document.querySelector('#api\\:address')
       let apiService = document.querySelector('#api\\:service')
@@ -101,7 +86,7 @@
   </script>
 </head>
 <body>
-  <h1>Truflation power tools</h1>
+  <h1>API Tester</h1>
   <a href="https://discord.com/channels/967280164071407666/968071680360587264"
      target="_blank">Truflation
     developer chat</a><br/>
@@ -119,20 +104,7 @@
   (<a href="https://remix.ethereum.org/#url=https://raw.githubusercontent.com/truflation/sample-frontend/main/ApiClient.sol">Show
   API Contract</a>)
   <br />
-  <br />
-  <section id="stub-example">
-    <h3>Stub example</h3>
-      <button type="button" onClick="getMartianAleIndex()">
-      Martian ale index
-    </button>
-    <br />
-    <span id="martianale:output"></span><br />
-    <span id="martianale:status"></span>
-  </section>
-  <p />
-
   <section id="api-tester">
-    <h3>API Tester</h3>
     <button type="button" onClick="getInflationCurrentValues()">
       Get Current Inflation Values
     </button>
@@ -155,6 +127,7 @@
     <button type="button" onClick="getNftValues()">
       Get NFT Values
     </button>
+    <br />
     <br />
     Service: <input type="text" size="50" id="api:service" /><br />
     Keypath: <input type="text" size="50" id="api:keypath" /><br />
