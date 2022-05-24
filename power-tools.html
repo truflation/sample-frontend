@@ -76,11 +76,18 @@
       document.querySelector('#api\\:data').value = '{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02"}'
       document.querySelector('#api\\:multiplier').value = ''
     }
-    async function getNftValues() {
+    async function getNftIndex() {
       document.querySelector('#api\\:service').value = "nft-index"
       document.querySelector('#api\\:keypath').value = ''
       document.querySelector('#api\\:abi').value = "json"
       document.querySelector('#api\\:data').value = '{"index": "nft/top11"}'
+      document.querySelector('#api\\:multiplier').value = ''
+    }
+    async function getNftIndexAtDate() {
+      document.querySelector('#api\\:service').value = "nft-index"
+      document.querySelector('#api\\:keypath').value = ''
+      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:data').value = '{"index": "nft/top11", "date": "2021-10-10"}'
       document.querySelector('#api\\:multiplier').value = ''
     }
   </script>
@@ -115,6 +122,13 @@
       Get Inflation range Values
     </button>
     <br />
+    <button type="button" onClick="getNftIndex()">
+      Get NFT Index
+    </button>
+    <button type="button" onClick="getNftIndexAtDate()">
+      Get NFT Index at Date
+    </button>
+    <br />
     <button type="button" onClick="getEchoValues()">
       Get Echo Values
     </button>
@@ -123,9 +137,6 @@
     </button>
     <button type="button" onClick="getStubValues()">
       Get Stub Values
-    </button>
-    <button type="button" onClick="getNftValues()">
-      Get NFT Values
     </button>
     <br />
     <br />
