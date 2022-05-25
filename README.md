@@ -3,13 +3,11 @@ using [chainlink](http://chain.link)
 
 ## Running sample apps
 
-The [Basic web3 app](https://truflation.github.io/sample-frontend/)
+* ***[Basic web3 app](https://truflation.github.io/sample-frontend/)***
 contains simple code that will allow you to query a smart contract
 that provides the current year-on-year truflation index.
 
-A set of [power
-tools](https://truflation.github.io/sample-frontend/power-tools.html) is
-available which will allowing you to send data via the truflation API.
+* ***[API Tester](https://truflation.github.io/sample-frontend/power-tools.html)*** allows you to send data via the truflation API.
 
 The sample apps connect to the truflation API through a solidity smart
 contract [ApiClient](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/truflation/sample-frontend/main/ApiClient.sol)
