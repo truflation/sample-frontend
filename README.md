@@ -1,7 +1,7 @@
 These are sample web3 apps from [truflation](http://truflation.com)
 using [chainlink](http://chain.link)
 
-## Running sample apps
+## Sample apps
 
 * ***[Basic web3 app](https://truflation.github.io/sample-frontend/)***
 contains simple code that will allow you to query a smart contract
