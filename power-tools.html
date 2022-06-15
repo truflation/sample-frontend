@@ -76,6 +76,22 @@
       document.querySelector('#api\\:data').value = '{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02"}'
       document.querySelector('#api\\:multiplier').value = ''
     }
+
+    async function getNftList() {
+      document.querySelector('#api\\:service').value = "nft-index"
+      document.querySelector('#api\\:keypath').value = ''
+      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:data').value = '{"service": "list"}'
+      document.querySelector('#api\\:multiplier').value = ''
+    }
+
+    async function getNftContracts() {
+      document.querySelector('#api\\:service').value = "nft-index"
+      document.querySelector('#api\\:keypath').value = ''
+      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:data').value = '{"service": "contracts", "index": "nft/top11"}'
+      document.querySelector('#api\\:multiplier').value = ''
+    }
     async function getNftIndex() {
       document.querySelector('#api\\:service').value = "nft-index"
       document.querySelector('#api\\:keypath').value = ''
@@ -122,6 +138,12 @@
       Get Inflation range Values
     </button>
     <br />
+    <button type="button" onClick="getNftList()">
+      Get list of NFTs available
+    </button>
+    <button type="button" onClick="getNftContracts()">
+      Get contracts for NFT index
+    </button>
     <button type="button" onClick="getNftIndex()">
       Get NFT Index
     </button>
