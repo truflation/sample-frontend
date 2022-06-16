@@ -80,7 +80,7 @@
     async function getNftList() {
       document.querySelector('#api\\:service').value = "nft-index"
       document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:abi').value = "ipfs"
       document.querySelector('#api\\:data').value = '{"service": "list"}'
       document.querySelector('#api\\:multiplier').value = ''
     }
@@ -88,7 +88,7 @@
     async function getNftContracts() {
       document.querySelector('#api\\:service').value = "nft-index"
       document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = "json"
+      document.querySelector('#api\\:abi').value = "ipfs"
       document.querySelector('#api\\:data').value = '{"service": "contracts", "index": "nft/top11"}'
       document.querySelector('#api\\:multiplier').value = ''
     }
