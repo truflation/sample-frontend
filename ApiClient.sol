@@ -13,7 +13,11 @@ contract ApiClient is ChainlinkClient, ConfirmedOwner {
 
     constructor(address oracleId_, string memory jobId_,
                 uint256 fee_) ConfirmedOwner(msg.sender) {
+        // this call may fail in some chains
         setPublicChainlinkToken();
+        // use this for BSC mainnet (chain: 56)
+	// setChainlinkToken(0x404460c6a5ede2d891e8297795264fde62adbb75);
+
         oracleId = oracleId_;
         jobId = jobId_;
         fee = fee_;
