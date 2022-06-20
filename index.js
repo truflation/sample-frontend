@@ -14,28 +14,48 @@ window.addEventListener('load', function () {
           document.getElementById('inflation:address')
     const apiAddress =
           document.getElementById('api:address')
+    const chain =
+          window.ethereum.networkVersion
     if (balanceAddress) { balanceAddress.value = accounts[0] }
-    if (inflationAddress) { inflationAddress.value = config.inflationAddress }
-    if (apiAddress) { apiAddress.value = config.apiAddress }
+    if (inflationAddress) {
+      if (chain !== undefined &&
+          config[chain]?.inflationAddress) {
+        inflationAddress.value = config[chain]?.inflationAddress
+      } else {
+        inflationAddress.value = ''
+      }
+    }
+    if (apiAddress) {
+      if (chain !== undefined &&
+          config[chain]?.apiAddress) {
+        apiAddress.value = config[chain]?.apiAddress
+      } else {
+        apiAddress.value = ''
+      }
+    }
     document.querySelector('.showChain').innerHTML =
-      window.ethereum.networkVersion
-  }
+      `${chain !== undefined && config[chain]?.chainName !== undefined ?
+         config[chain]?.chainName : ''} - ${chain}`
+    document.querySelector('#testnetwarning').innerHTML =
+      (chain !== undefined && config[chain]?.testnet === true) ?
+      '<b>Note that testnet contracts have random noise included</b>' : ''
 
-  if (typeof web3 !== 'undefined') {
-    console.log('Web3 Detected! ' + window.ethereum.constructor.name)
-    web3 = new Web3(window.ethereum)
-  } else {
-    console.log('No Web3 Detected... using HTTP Provider')
-    web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/<APIKEY>'))
+    if (typeof web3 !== 'undefined') {
+      console.log('Web3 Detected! ' + window.ethereum.constructor.name)
+      web3 = new Web3(window.ethereum)
+    } else {
+      console.log('No Web3 Detected... using HTTP Provider')
+      web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/<APIKEY>'))
+    }
   }
 })
 
 function getAccount () {
-  if (accounts === undefined) {
-    throw new Error('No account available - Please connect to wallet')
+    if (accounts === undefined) {
+      throw new Error('No account available - Please connect to wallet')
+    }
+    return accounts[0]
   }
-  return accounts[0]
-}
 
 function hexStringToByteArray (hexString) {
   if (hexString.length % 2 !== 0) {
@@ -106,6 +126,7 @@ async function doApiRequest (request, output) {
       request.abi ? request.abi : '',
       request.multiplier ? request.multiplier : ''
     )
+
     output.status.innerHTML = 'Transferring LINK...'
     const fee = await api.methods.fee().call()
     const transfer = tokenContract.methods.transfer(
@@ -126,7 +147,7 @@ async function doApiRequest (request, output) {
 
     api.events.ChainlinkFulfilled(
       {
-        filter: { id }
+         filter: { id }
       },
       (error, event) => { console.log('foo', error, event) })
       .on('data', async (event) => {
