@@ -1,4 +1,6 @@
-var accounts
+/* global config,ethereum,Web3,web3:writable,cbor,apiAbi,erc20Abi */
+
+let accounts
 window.addEventListener('load', function () {
   const ethereumButton = document.querySelector('.enableEthereumButton')
   const showAccount = document.querySelector('.showAccount')
@@ -34,11 +36,13 @@ window.addEventListener('load', function () {
       }
     }
     document.querySelector('.showChain').innerHTML =
-      `${chain !== undefined && config[chain]?.chainName !== undefined ?
-         config[chain]?.chainName : ''} - ${chain}`
+      `${chain !== undefined && config[chain]?.chainName !== undefined
+         ? config[chain]?.chainName
+: ''} - ${chain}`
     document.querySelector('#testnetwarning').innerHTML =
-      (chain !== undefined && config[chain]?.testnet === true) ?
-      '<b>Note that testnet contracts have random noise included</b>' : ''
+      (chain !== undefined && config[chain]?.testnet === true)
+        ? '<b>Note that testnet contracts have random noise included</b>'
+        : ''
 
     if (typeof web3 !== 'undefined') {
       console.log('Web3 Detected! ' + window.ethereum.constructor.name)
@@ -51,11 +55,11 @@ window.addEventListener('load', function () {
 })
 
 function getAccount () {
-    if (accounts === undefined) {
-      throw new Error('No account available - Please connect to wallet')
-    }
-    return accounts[0]
+  if (accounts === undefined) {
+    throw new Error('No account available - Please connect to wallet')
   }
+  return accounts[0]
+}
 
 function hexStringToByteArray (hexString) {
   if (hexString.length % 2 !== 0) {
@@ -101,7 +105,24 @@ function decode (data, web3, abi, multiplier) {
   return retval
 }
 
-async function doApiRequest (request, output) {
+async function outputResult (request, r, output) {
+  if (request.abi === 'ipfs' ||
+      request.abi === 'ipfs/cbor' ||
+      request.abi === 'ipfs/json') {
+    const b = hexStringToByteArray(r)
+    const s = new TextDecoder().decode(b)
+    output.output.innerHTML =
+      `<a href="http://ipfs.io/ipfs/${s}">${s}</a>`
+    output.status.innerHTML = ''
+    return
+  }
+  const obj = decode(r, web3, request.abi, request.multiplier)
+  output.output.innerHTML =
+    JSON.stringify(obj)
+  output.status.innerHTML = ''
+}
+
+async function doApiRequest (request, output) { // eslint-disable-line no-unused-vars
   try {
     console.log(request)
     if (request === undefined) {
@@ -111,7 +132,7 @@ async function doApiRequest (request, output) {
     if (!web3.utils.isAddress(request.address)) {
       throw Error('address not valid')
     }
-    output.status.innerHTML = "Running ..."
+    output.status.innerHTML = 'Running ...'
     const account = getAccount()
     const api = new web3.eth.Contract(
       apiAbi, request.address)
@@ -144,36 +165,34 @@ async function doApiRequest (request, output) {
     const id = txn.events.ChainlinkRequested.returnValues.id
     console.log(id)
     output.status.innerHTML = 'Waiting for response for request id: ' + id
-
-    api.events.ChainlinkFulfilled(
-      {
-         filter: { id }
-      },
-      (error, event) => { console.log('foo', error, event) })
-      .on('data', async (event) => {
-        if (request.abi === 'ipfs' ||
-            request.abi === 'ipfs/cbor' ||
-            request.abi === 'ipfs/json') {
-          const r = await api.methods.results(id).call()
-          const b = hexStringToByteArray(r)
-          const s = new TextDecoder().decode(b)
-
-          output.output.innerHTML =
-            `<a href="http://ipfs.io/ipfs/${s}">${s}</a>`
-          output.status.innerHTML = ''
+    const poll = config[window.ethereum.networkVersion]?.poll
+    if (poll !== undefined && poll !== 0) {
+      let r
+      const makeCall = async () => {
+        r = await api.methods.results(id).call()
+        if (r !== null) {
+          console.log('found result', r)
+          outputResult(request, r, output)
           return
         }
-        const obj = decode(
-          await api.methods.results(id).call(),
-          web3, request.abi, request.multiplier
-        )
-        output.output.innerHTML =
-          JSON.stringify(obj)
-        output.status.innerHTML = ''
-      })
+        console.log('no result - polling')
+        setTimeout(makeCall, poll)
+      }
+      setTimeout(makeCall, poll)
+    } else {
+      api.events.ChainlinkFulfilled(
+        {
+          filter: { id }
+        },
+        (error, event) => { console.log('foo', error, event) })
+        .on('data', async (event) => {
+          const r = await api.methods.results(id).call()
+          outputResult(request, r, output)
+        })
+    }
   } catch (err) {
     let string = err.toString()
-    if (string === "[object Object]") {
+    if (string === '[object Object]') {
       string = JSON.stringify(err)
     }
     output.status.innerHTML = string

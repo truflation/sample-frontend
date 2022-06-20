@@ -8,11 +8,13 @@ const config = {
   56 : {
     'apiAddress': '0x4F648Bc2864f014bea42996701B8F88Ab55D8d82',
     'chainName': 'BSC Mainnet',
-    'testnet' : false
+    'testnet' : false,
+    'poll': 1000
   },
   97 : {
     'apiAddress': '0x860c0901612d581420837406A574ae79ef552EF1',
     'chainName': 'BSC Testnet',
-    'testnet' : true
+    'testnet' : true,
+    'poll': 1000
   }
 }
