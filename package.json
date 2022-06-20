@@ -1,7 +1,8 @@
 {
   "license": "MIT",
   "scripts": {
-    "serve": "static-server . --port 9011"
+    "serve": "static-server . --port 9011",
+    "solt": "solt write --npm --runs 200 ApiClient.sol"
   },
   "dependencies": {
     "@chainlink/contracts": "^0.4.1",
