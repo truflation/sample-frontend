@@ -10,7 +10,8 @@ that provides the current year-on-year truflation index.
 * ***[API Tester](https://truflation.github.io/sample-frontend/power-tools.html)*** allows you to send data via the truflation API.
 
 The sample apps connect to the truflation API through a solidity smart
-contract [ApiClient](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/truflation/sample-frontend/main/ApiClient.sol)
+contract [ApiClient](https://remix.ethereum.org/#url=https://raw.githubusercontent.com/truflation/sample-frontend/main/ApiClient.sol) 
+which can be connected to the [Truflation API endpoints](https://github.com/truflation/quickstart/blob/main/network.md)
 
 ## Getting help
 
