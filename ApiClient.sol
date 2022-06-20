@@ -17,6 +17,8 @@ contract ApiClient is ChainlinkClient, ConfirmedOwner {
         setPublicChainlinkToken();
         // use this for BSC mainnet (chain: 56)
         // setChainlinkToken(0x404460C6A5EdE2D891e8297795264fDe62ADBB75);
+        // use this for BSC testnet (chain; 97)
+        // setChainlinkToken(0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06);
 
         oracleId = oracleId_;
         jobId = jobId_;
@@ -43,7 +45,7 @@ contract ApiClient is ChainlinkClient, ConfirmedOwner {
     function fulfillBytes(bytes32 _requestId, bytes memory bytesData)
         public recordChainlinkFulfillment(_requestId) {
         result = bytesData;
-	results[_requestId] = bytesData;
+        results[_requestId] = bytesData;
     }
 
     function changeOracle(address _oracle) public onlyOwner {
