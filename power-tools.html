@@ -56,24 +56,34 @@
       document.querySelector('#api\\:multiplier').value = ''
     }
     async function getInflationCurrentValues() {
+      const deriv =
+            document.querySelector('#api\\:show-categories').checked ?
+            '{"show-derivation": "true"}' : ''
       document.querySelector('#api\\:service').value = 'truflation/current'
       document.querySelector('#api\\:keypath').value = ''
       document.querySelector('#api\\:abi').value = 'json'
-      document.querySelector('#api\\:data').value = ''
+      document.querySelector('#api\\:data').value = `${deriv}`
       document.querySelector('#api\\:multiplier').value = ''
     }
     async function getInflationAtDateValues() {
+      const deriv =
+            document.querySelector('#api\\:show-categories').checked ?
+            ', "show-derivation": "true"' : ''
+
       document.querySelector('#api\\:service').value = 'truflation/at-date'
       document.querySelector('#api\\:keypath').value = ''
       document.querySelector('#api\\:abi').value = 'json'
-      document.querySelector('#api\\:data').value = '{"date": "2021-10-05"}'
+      document.querySelector('#api\\:data').value = `{"date": "2021-10-05"${deriv}}`
       document.querySelector('#api\\:multiplier').value = ''
     }
     async function getInflationRangeValues() {
+      const deriv =
+            document.querySelector('#api\\:show-categories').checked ?
+            ', "show-derivation": "true"' : ''
       document.querySelector('#api\\:service').value = "truflation/range"
       document.querySelector('#api\\:keypath').value = ''
       document.querySelector('#api\\:abi').value = "ipfs"
-      document.querySelector('#api\\:data').value = '{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02"}'
+      document.querySelector('#api\\:data').value = `{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02"${deriv}}`
       document.querySelector('#api\\:multiplier').value = ''
     }
 
@@ -86,24 +96,31 @@
     }
 
     async function getNftContracts() {
+      const index =
+            document.querySelector('#api\\:nft-index option:checked').value
       document.querySelector('#api\\:service').value = "nft-index"
       document.querySelector('#api\\:keypath').value = ''
       document.querySelector('#api\\:abi').value = "ipfs"
-      document.querySelector('#api\\:data').value = '{"service": "contracts", "index": "nft/top11"}'
+      document.querySelector('#api\\:data').value = `{"service": "contracts",
+"index": "${index}"}`
       document.querySelector('#api\\:multiplier').value = ''
     }
     async function getNftIndex() {
+      const index =
+            document.querySelector('#api\\:nft-index option:checked').value
       document.querySelector('#api\\:service').value = "nft-index"
       document.querySelector('#api\\:keypath').value = ''
       document.querySelector('#api\\:abi').value = "json"
-      document.querySelector('#api\\:data').value = '{"index": "nft/top11"}'
+      document.querySelector('#api\\:data').value = `{"index": "${index}"}`
       document.querySelector('#api\\:multiplier').value = ''
     }
     async function getNftIndexAtDate() {
+      const index =
+            document.querySelector('#api\\:nft-index option:checked').value
       document.querySelector('#api\\:service').value = "nft-index"
       document.querySelector('#api\\:keypath').value = ''
       document.querySelector('#api\\:abi').value = "json"
-      document.querySelector('#api\\:data').value = '{"index": "nft/top11", "date": "2021-10-10"}'
+      document.querySelector('#api\\:data').value = `{"index": "${index}", "date": "2021-10-10"}`
       document.querySelector('#api\\:multiplier').value = ''
     }
   </script>
@@ -139,24 +156,48 @@
       Get Inflation range Values
     </button>
     <br />
+    <input type="checkbox" id="api:show-categories">
+    <label for="api:show-categories">Show inflation categories</label>
+    <br/ >
+      <br/ >
     <button type="button" onClick="getNftList()">
       Get list of NFTs available
     </button>
     <button type="button" onClick="getNftContracts()">
       Get contracts for NFT index
     </button>
+    <br />
     <button type="button" onClick="getNftIndex()">
       Get NFT Index
     </button>
     <button type="button" onClick="getNftIndexAtDate()">
       Get NFT Index at Date
     </button>
-    <br />
+        <select name="nft-index" id="api:nft-index">
+    <option value="nft/top11">nft/top11</option>
+    <option value="metaverse/land">metaverse/land</option>
+    <option value="metaverse/assets">metaverse/assets</option>
+    <option value="nft/bayc">nft/bayc</option>
+    <option value="nft/ethlizards">nft/ethlizards</option>
+    <option value="utility/irl">utility/irl</option>
+    <option value="utility/dao">utility/dao</option>
+    <option value="utility/membership/discovered">utility/membership/discovered</option>
+    <option value="utility/membership/selected">utility/membership/selected</option>
+    <option value="artwork/handdrawn">artwork/handdrawn</option>
+    <option value="artwork/virtual">artwork/virtual</option>
+    <option value="music/generative">music/generative</option>
+    <option value="music/collections/genesis">music/collections/genesis</option>
+    <option value="music/collections/season1">music/collections/season1</option>
+    <option value="music/collections/season2">music/collections/season2</option>
+    </select>
+
+	<br />
+	<br />
     <button type="button" onClick="getEchoValues()">
-      Get Echo Values
+      Echo Values
     </button>
     <button type="button" onClick="getEchoWeiValues()">
-      Get Echo Value in wei
+      Echo Value in wei
     </button>
     <button type="button" onClick="getStubValues()">
       Get Stub Values
