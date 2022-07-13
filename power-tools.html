@@ -12,12 +12,12 @@
   <script src="./index.js"></script>
   <script type="text/javascript">
     async function runApi() {
-      let apiAddress = document.querySelector('#api\\:address')
-      let apiService = document.querySelector('#api\\:service')
-      let apiKeypath = document.querySelector('#api\\:keypath')
-      let apiAbi = document.querySelector('#api\\:abi')
-      let apiMultiplier = document.querySelector('#api\\:multiplier')
-      let apiData = document.querySelector('#api\\:data')
+      let apiAddress = document.getElementById('api:address')
+      let apiService = document.getElementById('api:service')
+      let apiKeypath = document.getElementById('api:keypath')
+      let apiAbi = document.getElementById('api:abi')
+      let apiMultiplier = document.getElementById('api:multiplier')
+      let apiData = document.getElementById('api:data')
       console.log(apiAddress)
 
       doApiRequest({
@@ -28,103 +28,135 @@
         "multiplier": apiMultiplier ? apiMultiplier.value : "",
         "data": apiData ? apiData.value : "",
       }, {
-        "output": document.querySelector('#api\\:output'),
-        "status": document.querySelector('#api\\:status')
+        "output": document.getElementById('api:output'),
+        "status": document.getElementById('api:status')
       })
     }
     async function getEchoValues() {
-      document.querySelector('#api\\:service').value = "echo"
-      document.querySelector('#api\\:keypath').value = "foo"
-      document.querySelector('#api\\:abi').value = "json"
-      document.querySelector('#api\\:data').value = '{"foo": 1024}'
-      document.querySelector('#api\\:multiplier').value = ''
+      document.getElementById('api:service').value = "echo"
+      document.getElementById('api:keypath').value = "foo"
+      document.getElementById('api:abi').value = "json"
+      document.getElementById('api:data').value = '{"foo": 1024}'
+      document.getElementById('api:multiplier').value = ''
     }
     async function getEchoWeiValues() {
-      document.querySelector('#api\\:service').value = "echo"
-      document.querySelector('#api\\:keypath').value = "foo"
-      document.querySelector('#api\\:abi').value = "uint256"
-      document.querySelector('#api\\:data').value = '{"foo": 1024.25}'
-      document.querySelector('#api\\:multiplier').value =
+      document.getElementById('api:service').value = "echo"
+      document.getElementById('api:keypath').value = "foo"
+      document.getElementById('api:abi').value = "uint256"
+      document.getElementById('api:data').value = '{"foo": 1024.25}'
+      document.getElementById('api:multiplier').value =
         '1000000000000000000'
     }
     async function getStubValues() {
-      document.querySelector('#api\\:service').value = "stub1"
-      document.querySelector('#api\\:keypath').value = "martianale"
-      document.querySelector('#api\\:abi').value = "json"
-      document.querySelector('#api\\:data').value =
+      document.getElementById('api:service').value = "stub1"
+      document.getElementById('api:keypath').value = "martianale"
+      document.getElementById('api:abi').value = "json"
+      document.getElementById('api:data').value =
         '{"range": [0, 100], "indexes": ["martianale"]}'
-      document.querySelector('#api\\:multiplier').value = ''
+      document.getElementById('api:multiplier').value = ''
     }
     async function getInflationCurrentValues() {
       const deriv =
-            document.querySelector('#api\\:show-categories').checked
-      document.querySelector('#api\\:service').value = 'truflation/current'
-      document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = deriv ? 'ipfs' : 'json'
-      document.querySelector('#api\\:data').value =
+            document.getElementById('api:show-categories').checked
+      document.getElementById('api:service').value = 'truflation/current'
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = deriv ? 'ipfs' : 'json'
+      document.getElementById('api:data').value =
         deriv ? '{"show-derivation": "true"}' : ''
-      document.querySelector('#api\\:multiplier').value = ''
+      document.getElementById('api:multiplier').value = ''
     }
     async function getInflationAtDateValues() {
       const deriv =
-            document.querySelector('#api\\:show-categories').checked
-      document.querySelector('#api\\:service').value = 'truflation/at-date'
-      document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = deriv ? 'ipfs' : 'json'
-      document.querySelector('#api\\:data').value =
+            document.getElementById('api:show-categories').checked
+      document.getElementById('api:service').value = 'truflation/at-date'
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = deriv ? 'ipfs' : 'json'
+      document.getElementById('api:data').value =
         deriv ?
         '{"date": "2021-10-05", "show-derivation": "true"}' :
         '{"date": "2021-10-05"}'
-      document.querySelector('#api\\:multiplier').value = ''
+      document.getElementById('api:multiplier').value = ''
     }
     async function getInflationRangeValues() {
       const deriv =
-            document.querySelector('#api\\:show-categories').checked
-      document.querySelector('#api\\:service').value = "truflation/range"
-      document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = "ipfs"
-      document.querySelector('#api\\:data').value =
+            document.getElementById('api:show-categories').checked
+      document.getElementById('api:service').value = "truflation/range"
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = "ipfs"
+      document.getElementById('api:data').value =
         deriv ?
         '{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02", "show-derivation": "true"}' :
         '{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02"}'
-      document.querySelector('#api\\:multiplier').value = ''
+      document.getElementById('api:multiplier').value = ''
+    }
+
+    async function getNuonStatic() {
+      document.getElementById('api:service').value = "nuon/static-index"
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = "json"
+      document.getElementById('api:data').value = '{"date": "2022-07-05"}'
+      document.getElementById('api:multiplier').value = ''
+    }
+
+    async function getNuonDynamic() {
+      document.getElementById('api:service').value = "nuon/dynamic-index"
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = "json"
+      document.getElementById('api:data').value =' {"date": "2022-07-05"}'
+      document.getElementById('api:multiplier').value = ''
+    }
+
+    async function getNuonStaticInWei() {
+      document.getElementById('api:service').value = "nuon/static-index"
+      document.getElementById('api:keypath').value = 'nuonIndex'
+      document.getElementById('api:abi').value = "uint256"
+      document.getElementById('api:data').value = '{"date": "2022-07-05"}'
+      document.getElementById('api:multiplier').value = '1000000000000000000'
+    }
+
+    async function getNuonDynamicInWei() {
+      document.getElementById('api:service').value = "nuon/dynamic-index"
+      document.getElementById('api:keypath').value = 'nuonIndex'
+      document.getElementById('api:abi').value = "uint256"
+      document.getElementById('api:data').value =' {"date": "2022-07-05"}'
+      document.getElementById('api:multiplier').value = '1000000000000000000'
     }
 
     async function getNftList() {
-      document.querySelector('#api\\:service').value = "nft-index"
-      document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = "ipfs"
-      document.querySelector('#api\\:data').value = '{"service": "list"}'
-      document.querySelector('#api\\:multiplier').value = ''
+      document.getElementById('api:service').value = "nft-index"
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = "ipfs"
+      document.getElementById('api:data').value = '{"service": "list"}'
+      document.getElementById('api:multiplier').value = ''
     }
 
     async function getNftContracts() {
       const index =
-            document.querySelector('#api\\:nft-index option:checked').value
-      document.querySelector('#api\\:service').value = "nft-index"
-      document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = "ipfs"
-      document.querySelector('#api\\:data').value = `{"service": "contracts",
+            document.getElementById('api:nft-index').value
+      document.getElementById('api:service').value = "nft-index"
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = "ipfs"
+      document.getElementById('api:data').value = `{"service": "contracts",
 "index": "${index}"}`
-      document.querySelector('#api\\:multiplier').value = ''
+      document.getElementById('api:multiplier').value = ''
     }
     async function getNftIndex() {
       const index =
-            document.querySelector('#api\\:nft-index option:checked').value
-      document.querySelector('#api\\:service').value = "nft-index"
-      document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = "json"
-      document.querySelector('#api\\:data').value = `{"index": "${index}"}`
-      document.querySelector('#api\\:multiplier').value = ''
+            document.getElementById('api:nft-index').value
+      document.getElementById('api:service').value = "nft-index"
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = "json"
+      document.getElementById('api:data').value = `{"index": "${index}"}`
+      document.getElementById('api:multiplier').value = ''
     }
     async function getNftIndexAtDate() {
       const index =
-            document.querySelector('#api\\:nft-index option:checked').value
-      document.querySelector('#api\\:service').value = "nft-index"
-      document.querySelector('#api\\:keypath').value = ''
-      document.querySelector('#api\\:abi').value = "json"
-      document.querySelector('#api\\:data').value = `{"index": "${index}", "date": "2021-10-10"}`
-      document.querySelector('#api\\:multiplier').value = ''
+            document.getElementById('api:nft-index').value
+      document.getElementById('api:service').value = "nft-index"
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = "json"
+      document.getElementById('api:data').value = `{"index": "${index}", "date": "2021-10-10"}`
+      document.getElementById('api:multiplier').value = ''
     }
   </script>
 </head>
@@ -198,6 +230,22 @@
 
 	<br />
 	<br />
+<button type="button" onClick="getNuonStatic()">
+      Nuon static index (json)
+    </button>
+<button type="button" onClick="getNuonDynamic()">
+      Nuon dynamic index (json)
+</button>
+<br/>
+<button type="button" onClick="getNuonStaticInWei()">
+      Nuon static index (wei)
+    </button>
+<button type="button" onClick="getNuonDynamicInWei()">
+      Nuon dynamic index (wei)
+    </button>
+
+	<br/>
+	<br/>
     <button type="button" onClick="getEchoValues()">
       Echo Values
     </button>

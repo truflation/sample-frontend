@@ -91,6 +91,7 @@ function decode (data, web3, abi, multiplier) {
     console.log(data)
     const byteArray = hexStringToByteArray(data)
     const string = new TextDecoder().decode(byteArray)
+    console.log(string)
     retval = JSON.parse(string)
   } else {
     retval = web3.eth.abi.decodeParameter(abi, data)
