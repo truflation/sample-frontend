@@ -90,6 +90,30 @@
       document.getElementById('api:multiplier').value = ''
     }
 
+    async function getDefiLamaExample1() {
+      document.getElementById('api:service').value = "defilama/tvl/chains"
+      document.getElementById('api:keypath').value = ''
+      document.getElementById('api:abi').value = "ipfs"
+      document.getElementById('api:data').value = ''
+      document.getElementById('api:multiplier').value = ''
+    }
+
+    async function getDefiLamaExample2() {
+      document.getElementById('api:service').value = "defilama/stablecoins/stablecoins"
+      document.getElementById('api:keypath').value = 'peggedAssets.symbol=USDT.circulating.peggedUSD'
+      document.getElementById('api:abi').value = "uint256"
+      document.getElementById('api:data').value = ''
+      document.getElementById('api:multiplier').value = '1000000000000000000'
+    }
+
+    async function getDefiLamaExample3() {
+      document.getElementById('api:service').value = "defilama/stablecoins/stablecoincharts/all"
+      document.getElementById('api:keypath').value = 'date=1652313600'
+      document.getElementById('api:abi').value = "cbor"
+      document.getElementById('api:data').value = '{"id": "1"}'
+      document.getElementById('api:multiplier').value = ''
+    }
+
     async function getNuonStatic() {
       document.getElementById('api:service').value = "nuon/static-index"
       document.getElementById('api:keypath').value = ''
@@ -235,6 +259,17 @@
     <option value="music/collections/season2">music/collections/season2</option>
     </select>
 
+	<br />
+	<br />
+<button type="button" onClick="getDefiLamaExample1()">
+      detDefiLamaExample1
+</button>
+<button type="button" onClick="getDefiLamaExample2()">
+      detDefiLamaExample2
+</button>
+<button type="button" onClick="getDefiLamaExample3()">
+      detDefiLamaExample3
+</button>
 	<br />
 	<br />
 <button type="button" onClick="getNuonStatic()">
