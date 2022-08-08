@@ -14,9 +14,9 @@ contract ApiClient is ChainlinkClient, ConfirmedOwner {
     constructor(address oracleId_, string memory jobId_,
                 uint256 fee_) ConfirmedOwner(msg.sender) {
         // this call may fail in some chains
-        // setPublicChainlinkToken();
+        setPublicChainlinkToken();
         // use this for BSC mainnet (chain: 56)
-        setChainlinkToken(0x404460C6A5EdE2D891e8297795264fDe62ADBB75);
+        // setChainlinkToken(0x404460C6A5EdE2D891e8297795264fDe62ADBB75);
         // use this for BSC testnet (chain; 97)
         // setChainlinkToken(0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06);
 
@@ -56,12 +56,24 @@ contract ApiClient is ChainlinkClient, ConfirmedOwner {
         jobId = _jobId;
     }
 
-    function getChainlinkToken() public view returns (address) {
+    function changeFee(uint256 _fee) public onlyOwner {
+        fee = _fee;
+    }
+
+    function changeToken(address _address) public onlyOwner {
+        setChainlinkToken(_address);
+    }
+
+    function getToken() public view returns (address) {
         return chainlinkTokenAddress();
     }
 
+    function getChainlinkToken() public view returns (address) {
+        return getToken();
+    }
+
     function withdrawLink() public onlyOwner {
-    LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
-    require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
+        LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
+            require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
   }
 }
