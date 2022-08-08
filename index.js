@@ -149,15 +149,18 @@ async function doApiRequest (request, output) { // eslint-disable-line no-unused
       request.multiplier ? request.multiplier : ''
     )
 
-    output.status.innerHTML = 'Transferring LINK...'
+
     const fee = await api.methods.fee().call()
-    const transfer = tokenContract.methods.transfer(
-      request.address, fee
-    )
-    await transfer.send({
-      from: account,
-      to: request.address
-    })
+    if (parseInt(fee) !== 0) {
+      output.status.innerHTML = 'Transferring LINK...'
+      const transfer = tokenContract.methods.transfer(
+        request.address, fee
+      )
+      await transfer.send({
+        from: account,
+        to: request.address
+      })
+    }
     output.status.innerHTML = 'Sending request ...'
     const txn = await requestTxn.send({
       from: account,
