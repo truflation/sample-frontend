@@ -56,12 +56,24 @@ contract ApiClient is ChainlinkClient, ConfirmedOwner {
         jobId = _jobId;
     }
 
-    function getChainlinkToken() public view returns (address) {
+    function changeFee(uint256 _fee) public onlyOwner {
+        fee = _fee;
+    }
+
+    function changeToken(address _address) public onlyOwner {
+        setChainlinkToken(_address);
+    }
+
+    function getToken() public view returns (address) {
         return chainlinkTokenAddress();
     }
 
+    function getChainlinkToken() public view returns (address) {
+        return getToken();
+    }
+
     function withdrawLink() public onlyOwner {
-    LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
-    require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
+        LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
+            require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
   }
 }
