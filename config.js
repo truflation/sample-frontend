@@ -20,7 +20,8 @@ const config = {
   80001 : {
     'apiAddress': '0x860c0901612d581420837406A574ae79ef552EF1',
     'chainName': 'Polygon Mumbai',
-    'testnet' : true
+    'testnet' : true,
+    'poll': 1000
   }
 
 }
