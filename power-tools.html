@@ -58,11 +58,19 @@
     async function getInflationCurrentValues() {
       const deriv =
             document.getElementById('api:show-categories').checked
+      const location =
+            document.getElementById('api:truflation-location').value
       document.getElementById('api:service').value = 'truflation/current'
       document.getElementById('api:keypath').value = ''
       document.getElementById('api:abi').value = deriv ? 'ipfs' : 'json'
-      document.getElementById('api:data').value =
-        deriv ? '{"show-derivation": "true"}' : ''
+      let object = {}
+      if (deriv) {
+        object['show-derivation'] = "true"
+      }
+      if (location !== 'us') {
+        object['location'] = location
+      }
+      document.getElementById('api:data').value = JSON.stringify(object)
       document.getElementById('api:multiplier').value = ''
     }
     async function getInflationAtDateValues() {
@@ -71,22 +79,33 @@
       document.getElementById('api:service').value = 'truflation/at-date'
       document.getElementById('api:keypath').value = ''
       document.getElementById('api:abi').value = deriv ? 'ipfs' : 'json'
-      document.getElementById('api:data').value =
-        deriv ?
-        '{"date": "2021-10-05", "show-derivation": "true"}' :
-        '{"date": "2021-10-05"}'
+      let object = {"date": "2021-10-05"}
+      if (deriv) {
+        object['show-derivation'] = "true"
+      }
+      if (location !== 'us') {
+        object['location'] = location
+      }
+      document.getElementById('api:data').value = JSON.stringify(object)
       document.getElementById('api:multiplier').value = ''
     }
     async function getInflationRangeValues() {
       const deriv =
             document.getElementById('api:show-categories').checked
+      const location =
+            document.getElementById('api:truflation-location').value
       document.getElementById('api:service').value = "truflation/range"
       document.getElementById('api:keypath').value = ''
       document.getElementById('api:abi').value = "ipfs"
-      document.getElementById('api:data').value =
-        deriv ?
-        '{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02", "show-derivation": "true"}' :
-        '{"interval": "day","start-date": "2021-01-01", "end-date": "2021-01-02"}'
+      let object = {"interval": "day","start-date": "2021-01-01",
+                    "end-date": "2021-01-02"}
+      if (deriv) {
+        object['show-derivation'] = "true"
+      }
+      if (location !== 'us') {
+        object['location'] = location
+      }
+      document.getElementById('api:data').value = JSON.stringify(object)
       document.getElementById('api:multiplier').value = ''
     }
 
@@ -213,6 +232,7 @@
     <label for"api:truflation-location">Location</label>
     <select name="truflation-location" id="api:truflation-location">
       <option value="us">United States</option>
+      <option value="uk">United Kingdom</option>
     </select>
     <input type="checkbox" id="api:show-categories">
     <label for="api:show-categories">Show inflation categories</label>
