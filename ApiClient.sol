@@ -15,12 +15,14 @@ contract ApiClient is ChainlinkClient, ConfirmedOwner {
                 uint256 fee_) ConfirmedOwner(msg.sender) {
         // this call may fail in some chains
         setPublicChainlinkToken();
+        // use this for Goerli (chain: 5)
+        // setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
         // use this for BSC mainnet (chain: 56)
         // setChainlinkToken(0x404460C6A5EdE2D891e8297795264fDe62ADBB75);
         // use this for BSC testnet (chain; 97)
         // setChainlinkToken(0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06);
-	// use this for Polygon Mumbai (chain: 80001)
-	// setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
+        // use this for Polygon Mumbai (chain: 80001)
+        // setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
 
         oracleId = oracleId_;
         jobId = jobId_;

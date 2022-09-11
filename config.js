@@ -5,6 +5,12 @@ const config = {
     'chainName': 'Rinkeby',
     'testnet' : true
   },
+  5 : {
+    'inflationAddress': '0x92733D7Da602A9A1415249F1729CBB732330d109',
+    'apiAddress': '0x56d04066e9A76ea53505ff2FC90171160212B7A8',
+    'chainName': 'Goerli',
+    'testnet' : true
+  },
   56 : {
     'apiAddress': '0x4F648Bc2864f014bea42996701B8F88Ab55D8d82',
     'chainName': 'BSC Mainnet',
