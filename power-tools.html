@@ -110,6 +110,22 @@
     }
 
     async function getDefiLamaExample1() {
+      document.getElementById('api:service').value = "defilama/stablecoins/stablecoins"
+      document.getElementById('api:keypath').value = 'gecko_id=harmony.totalCirculatingUSD.peggedUSD'
+      document.getElementById('api:abi').value = "uint256"
+      document.getElementById('api:data').value = ''
+      document.getElementById('api:multiplier').value = '1000000000000000000'
+    }
+
+    async function getDefiLamaExample2() {
+      document.getElementById('api:service').value = "defilama/stablecoins/stablecoincharts/all"
+      document.getElementById('api:data').value = '{"id": "1"}'
+      document.getElementById('api:keypath').value = 'date=1652313600.totalCirculating.peggedUSD'
+      document.getElementById('api:abi').value = 'uint256'
+      document.getElementById('api:multiplier').value = '1000000000000000000'
+    }
+
+    async function getDefiLamaExample3() {
       document.getElementById('api:service').value = "defilama/tvl/chains"
       document.getElementById('api:keypath').value = ''
       document.getElementById('api:abi').value = "ipfs"
@@ -117,21 +133,6 @@
       document.getElementById('api:multiplier').value = ''
     }
 
-    async function getDefiLamaExample2() {
-      document.getElementById('api:service').value = "defilama/stablecoins/stablecoins"
-      document.getElementById('api:keypath').value = 'peggedAssets.symbol=USDT.circulating.peggedUSD'
-      document.getElementById('api:abi').value = "uint256"
-      document.getElementById('api:data').value = ''
-      document.getElementById('api:multiplier').value = '1000000000000000000'
-    }
-
-    async function getDefiLamaExample3() {
-      document.getElementById('api:service').value = "defilama/stablecoins/stablecoincharts/all"
-      document.getElementById('api:keypath').value = 'date=1652313600'
-      document.getElementById('api:abi').value = "cbor"
-      document.getElementById('api:data').value = '{"id": "1"}'
-      document.getElementById('api:multiplier').value = ''
-    }
 
     async function getNuonStatic() {
       document.getElementById('api:service').value = "nuon/static-index"
@@ -211,7 +212,7 @@
   <a href="https://github.com/truflation/sample-frontend/"
      target="_blank">
     Source code</a>
-    <a href="https://github.com/truflation/quickstart">Tutorial for
+    <a href="./docs/api-tutorial.html">Tutorial for
     API</a>
   <a href="https://github.com/truflation/quickstart/blob/main/network.md">Network endpoints</a>
   <p />
@@ -278,17 +279,18 @@
     <option value="music/collections/season1">music/collections/season1</option>
     <option value="music/collections/season2">music/collections/season2</option>
     </select>
-
+        <br />
 	<br />
+<a href="docs/api-defilama.html">Defilama recipes</a>
 	<br />
 <button type="button" onClick="getDefiLamaExample1()">
-      detDefiLamaExample1
-</button>
+      Example 1; Get circulating value on a blockchain
+</button><br />
 <button type="button" onClick="getDefiLamaExample2()">
-      detDefiLamaExample2
-</button>
+      Example 2: Get circulating value for USDT on 2022 May 12
+</button><br />
 <button type="button" onClick="getDefiLamaExample3()">
-      detDefiLamaExample3
+      Example 3: Get all chains on defilama using ipfs
 </button>
 	<br />
 	<br />
@@ -317,6 +319,9 @@
     <button type="button" onClick="getStubValues()">
       Get Stub Values
     </button>
+    <br />
+    <br />
+    <a href="docs/api-tutorial.html">Tutorial for API</a>
     <br />
     <br />
     Service: <input type="text" size="50" id="api:service" /><br />
