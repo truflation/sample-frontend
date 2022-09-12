@@ -5,7 +5,8 @@ the defilama site to find the data which the user wishes to
 incorporate.  Once one finds the defilama web2 request, one can
 convert this to a web3 request as follows.
 
-Start with the API doc for defilama
+Start with the API doc for defilama located
+at <a href="https://defillama.com/docs/api">https://defillama.com/docs/api</a>
 
 The service name is the category of the api followed by the endpoint
 name, and can start with
@@ -36,10 +37,7 @@ data: (blank)
 </pre>
 
 We can use the swagger ui to get the result of the web2 call. Calling
-
-<pre>
-  https://stablecoins.llama.fi/stablecoinchains
-  </pre>
+<a href=https://stablecoins.llama.fi/stablecoinchains>https://stablecoins.llama.fi/stablecoinchains</a>
 
 we get the result
 <pre>
@@ -76,18 +74,12 @@ multiplier: 1000000000000000000
 <h3>Example 2 - Get the total circulating value for USDT on Thu May 12 2022</h3>
 
 Look at the defilama api web page we can find the ID for USDT by
-calling
-
-<pre>
-  https://stablecoins.llama.fi/stablecoins?includePrices=true
-</pre>
+calling <a href="https://stablecoins.llama.fi/stablecoins?includePrices=true">https://stablecoins.llama.fi/stablecoins?includePrices=true</a>
 
 From this call we see that the id for USDT is 1.  The call to get the
-prices of USDT is:
-
-<pre>
+prices of USDT is <a href=https://stablecoins.llama.fi/stablecoincharts/all?stablecoin=1>
 https://stablecoins.llama.fi/stablecoincharts/all?stablecoin=1
-</pre>
+</a>
 
 <pre>
 [
@@ -133,9 +125,7 @@ The previous examples take one number, but it may be useful to get a
 large amount of data.  This can be done using the ipfs inference
 
 For example to get a list of all chains available on defilama, one
-uses the web2 interface under category TVL
-
-https://api.llama.fi/chains
+uses the web2 interface under category TVL by calling <a href="https://api.llama.fi/chains">https://api.llama.fi/chains</a>
 
 To retrieve the list of chains for which tvl information is available,
 the calls are
