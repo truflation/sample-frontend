@@ -11,6 +11,23 @@ const config: HardhatUserConfig = {
 	version: "0.7.6"
       }
     ]
+  },
+  settings: {
+    optimizer: {
+      enabled: true,
+      runs: 200,
+    },
+  },
+  networks: {
+    goerli: {
+      url: `https://goerli.infura.io/v3/${INFURA_API_KEY}`,
+      accounts: [GOERLI_PRIVATE_KEY!],
+    },
+  },
+  etherscan: {
+    apiKey: {
+      goerli: ETHERSCAN_API_KEY!
+    }
   }
 };
 
