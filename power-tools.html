@@ -109,24 +109,24 @@
       document.getElementById('api:multiplier').value = ''
     }
 
-    async function getDefiLamaExample1() {
-      document.getElementById('api:service').value = "defilama/stablecoins/stablecoins"
+    async function getDefiLlamaExample1() {
+      document.getElementById('api:service').value = "defillama/stablecoins/stablecoins"
       document.getElementById('api:keypath').value = 'gecko_id=harmony.totalCirculatingUSD.peggedUSD'
       document.getElementById('api:abi').value = "uint256"
       document.getElementById('api:data').value = ''
       document.getElementById('api:multiplier').value = '1000000000000000000'
     }
 
-    async function getDefiLamaExample2() {
-      document.getElementById('api:service').value = "defilama/stablecoins/stablecoincharts/all"
+    async function getDefiLlamaExample2() {
+      document.getElementById('api:service').value = "defillama/stablecoins/stablecoincharts/all"
       document.getElementById('api:data').value = '{"id": "1"}'
       document.getElementById('api:keypath').value = 'date=1652313600.totalCirculating.peggedUSD'
       document.getElementById('api:abi').value = 'uint256'
       document.getElementById('api:multiplier').value = '1000000000000000000'
     }
 
-    async function getDefiLamaExample3() {
-      document.getElementById('api:service').value = "defilama/tvl/chains"
+    async function getDefiLlamaExample3() {
+      document.getElementById('api:service').value = "defillama/tvl/chains"
       document.getElementById('api:keypath').value = ''
       document.getElementById('api:abi').value = "ipfs"
       document.getElementById('api:data').value = ''
@@ -281,16 +281,16 @@
     </select>
         <br />
 	<br />
-<a href="docs/api-defilama.html">Defilama recipes</a>
+<a href="docs/api-defillama.html">Defillama recipes</a>
 	<br />
-<button type="button" onClick="getDefiLamaExample1()">
+<button type="button" onClick="getDefiLlamaExample1()">
       Example 1; Get circulating value on a blockchain
 </button><br />
-<button type="button" onClick="getDefiLamaExample2()">
+<button type="button" onClick="getDefiLlamaExample2()">
       Example 2: Get circulating value for USDT on 2022 May 12
 </button><br />
-<button type="button" onClick="getDefiLamaExample3()">
-      Example 3: Get all chains on defilama using ipfs
+<button type="button" onClick="getDefiLlamaExample3()">
+      Example 3: Get all chains on defillama using ipfs
 </button>
 	<br />
 	<br />
